@@ -1,7 +1,6 @@
 package gopasswd
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -15,7 +14,24 @@ func TestGetPWUid(t *testing.T) {
 	}
 
 	_, test2 := GetPWUid(93948)
-	if test2 !=  {
-		t.Errorf("pwName == %e; wanted error", test2)
+	errorValue := "Unable to Find UID"
+	if test2.Error() != errorValue {
+		t.Errorf("error == %v; Expected %s", test2, errorValue)
 	}
+}
+
+func TestPutPWEnt(t *testing.T) {
+
+	testUser := &Passwd{
+		pwName:   "testUser",
+		pwPasswd: "et22rdre",
+		pwShell:  "/bin/bash",
+	}
+
+	_, errorValue := PutPWEnt(testUser)
+
+	if errorValue.Error() != "Unable to create user" {
+		t.Errorf("error == %v; Expected Unable to create user", errorValue)
+	}
+
 }
