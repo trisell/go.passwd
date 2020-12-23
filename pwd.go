@@ -160,4 +160,6 @@ func Rempwent(name string) (bool, error) {
 	return true, nil
 }
 
-func Putshdwent()
+func Putshdwent() {
+
+}
